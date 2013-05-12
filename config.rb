@@ -1,3 +1,6 @@
+require "zurb-foundation"
+preferred_syntax = :scss
+
 ###
 # Compass
 ###
@@ -78,4 +81,10 @@ activate :livereload
 activate :deploy do |deploy|
   deploy.method = :git
   deploy.branch = "master"
+end
+
+after_configuration do
+  zurb_foundation_root = Middleman.rubygems_latest_specs.map(&:full_gem_path).grep(/zurb-foundation-4/).first
+  zurb_foundation_root or raise "Couldn't find zurb-foundation gem root"
+  sprockets.append_path("#{zurb_foundation_root}/js")
 end
