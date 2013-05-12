@@ -73,6 +73,8 @@ configure :build do
   # set :http_path, "/Content/images/"
 end
 
+activate :livereload
+
 activate :deploy do |deploy|
   deploy.method = :git
   deploy.branch = "master"
